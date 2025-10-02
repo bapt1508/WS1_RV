@@ -1937,7 +1937,7 @@ PrefabInstance:
     - target: {fileID: -2388470945362215989, guid: 523519b2ecb6a324c9c1c89dc14d097c,
         type: 3}
       propertyPath: m_MovementType
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2388470945362215989, guid: 523519b2ecb6a324c9c1c89dc14d097c,
         type: 3}
