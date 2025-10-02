@@ -59,7 +59,7 @@ public class FireController : MonoBehaviour
         fireScript.Health = 100;
         headRb.isKinematic = false;
         Collisions.SetActive(false);
-        headRb.AddForce(new Vector3(0,1,-0.5f) * 2f, ForceMode.Impulse);
+        headRb.AddRelativeForce(new Vector3(-1,0,-0.5f) * 5f, ForceMode.Impulse);
         StartCoroutine(ReEnableCollisions());
         socket.isDetached = true;
     }
