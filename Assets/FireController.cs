@@ -8,19 +8,27 @@ public class FireController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject head;         
-
-    public Rigidbody headRb;
-    public Socket socket;
-    public GameObject FireObject;
-    public Fire fireScript;
+    public GameObject head;
     private XRGrabInteractable xrGrab;
+    private Rigidbody headRb;
+
+    public Socket socket;
+
+    public GameObject FireObject;
+    private Fire fireScript;
+    //public Fire fireScript;
+
     public BaseStateMachine tiago;
+    public GameObject Collisions;
     
-    
+
+
+
     void Start()
     {
+        headRb = head.GetComponent<Rigidbody>();
         xrGrab = head.GetComponent<XRGrabInteractable>();
+        fireScript = FireObject.GetComponent<Fire>();
     }
 
     // Update is called once per frame
@@ -46,16 +54,19 @@ public class FireController : MonoBehaviour
         if (socket.isDetached) { 
             return; 
         }
-
-
         tiago.enabled = false;
         FireObject.SetActive(true);
         fireScript.Health = 100;
         headRb.isKinematic = false;
-        headRb.AddForce(Vector3.up * 100f, ForceMode.Force);
-        head.GetComponent<BoxCollider>().enabled = true;
+        Collisions.SetActive(false);
+        headRb.AddForce(new Vector3(0,1,-0.5f) * 2f, ForceMode.Impulse);
+        StartCoroutine(ReEnableCollisions());
         socket.isDetached = true;
     }
 
-   
+    public IEnumerator ReEnableCollisions() {
+        yield return new WaitForSeconds(0.3f);
+        Collisions.SetActive(true);
+
+    }   
 }

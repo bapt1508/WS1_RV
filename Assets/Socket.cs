@@ -5,16 +5,17 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Socket : MonoBehaviour
 {
     public GameObject head;              // ton objet à insérer
+    private Rigidbody Rigidbody;
+
     public bool isDetached = false;
-    public bool isAttachable = false;
 
     private XRSocketInteractor interactor;
-    public GameObject parent;
 
-    public Rigidbody Rigidbody;
+    
 
     void Start()
     {
+        Rigidbody = head.GetComponent<Rigidbody>();
         interactor = GetComponent<XRSocketInteractor>();
         interactor.selectEntered.AddListener(OnObjectAttached);
        
@@ -29,7 +30,6 @@ public class Socket : MonoBehaviour
             if (args.interactableObject.transform.gameObject == head)
             {
                 Debug.Log("C'est bien la head !");
-                head.GetComponent<BoxCollider>().enabled = false;
                 Rigidbody.isKinematic = true;
                
                 StartCoroutine(DisableComponent());   
