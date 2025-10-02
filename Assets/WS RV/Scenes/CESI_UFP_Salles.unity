@@ -1951,6 +1951,11 @@ PrefabInstance:
       objectReference: {fileID: 377590998}
     - target: {fileID: 201036244909922691, guid: 523519b2ecb6a324c9c1c89dc14d097c,
         type: 3}
+      propertyPath: power
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 201036244909922691, guid: 523519b2ecb6a324c9c1c89dc14d097c,
+        type: 3}
       propertyPath: colliderGo
       value: 
       objectReference: {fileID: 786119771}
