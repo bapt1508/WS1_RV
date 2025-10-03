@@ -2,6 +2,7 @@ using com.lineact.lit.FSM;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class FireController : MonoBehaviour
@@ -20,10 +21,28 @@ public class FireController : MonoBehaviour
 
     public BaseStateMachine tiago;
     public GameObject Collisions;
-    
+
+    private InputAction FireTrigger;
+    public InputActionAsset inputActionAsset;
 
 
 
+    private void Awake()
+    {
+        FireTrigger = inputActionAsset.FindActionMap("Actions").FindAction("TiagoFire");
+    }
+
+    public void OnEnable()
+    {
+        FireTrigger.performed += DetachHead;
+        FireTrigger.Enable();
+    }
+    public void OnDisable()
+    {
+        FireTrigger.performed -= DetachHead;
+        FireTrigger.Disable();
+
+    }
     void Start()
     {
         headRb = head.GetComponent<Rigidbody>();
@@ -49,8 +68,9 @@ public class FireController : MonoBehaviour
         }
     }
 
-    public void  DetachHead()
+    public void  DetachHead(InputAction.CallbackContext context)
     {
+        Debug.Log("detacher");
         if (socket.isDetached) { 
             return; 
         }

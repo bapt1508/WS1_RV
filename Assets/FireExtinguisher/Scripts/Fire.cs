@@ -71,7 +71,6 @@ public class Fire : MonoBehaviour
         // Gain health if fire is not fully extinguished
 
         health += healthIncreasePerSec * Time.fixedDeltaTime;
-        Debug.Log("regen");
         health = Mathf.Min(health, maxHealth);
         health = Mathf.Max(health, 0f);
 
